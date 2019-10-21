@@ -1,9 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Tech Blog Post</title>
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Tech Blog Post</title>-->
+<!--</head>-->
+
+<head th:replace="layout :: site-head">
+    <title>Spring MVC Application</title>
 </head>
+
+<header th:replace="layout :: logged-out"></header>
 <body>
     <h1>My Technical Blog Post</h1>
     <main id="posts" role="">

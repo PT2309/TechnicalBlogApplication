@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head th:fragment="site-head"></head>
+<body>
+    <header th:fragment="logged-out" th:remove="tags">
+        <header>
+            <a href="users/login" th:href="@{users/login}">Login</a>
+            <a href="users/registration" th:href="@{users/registration}">Registration</a>
+        </header>
+    </header>
+</body>
+</html>
