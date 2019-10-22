@@ -4,9 +4,15 @@
 <body>
     <header th:fragment="logged-out" th:remove="tags">
         <header>
-            <a href="users/login" th:href="@{users/login}">Login</a>
-            <a href="users/registration" th:href="@{users/registration}">Registration</a>
+            <a href="users/login.html" th:href="@{/users/login}">Login</a>
+            <a href="users/registration.html" th:href="@{/users/registration}">Registration</a>
         </header>
+    </header>
+
+    <header th:fragment="logged-in" th:remove="tags">
+        <form method="post">
+            <input type="submit" value="logout">
+        </form>
     </header>
 </body>
 </html>

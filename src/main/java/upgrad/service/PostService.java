@@ -1,6 +1,6 @@
-package service;
+package upgrad.service;
 
-import model.Post;
+import upgrad.model.Post;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -32,5 +32,19 @@ public class PostService {
         posts.add(post2);
 
         return posts;
+    }
+
+    public ArrayList<Post> getOnePost(){
+
+        ArrayList<Post> onePost = new ArrayList<>(); // Empty collection of Post data.
+
+        Post post1 = new Post();
+        post1.setTitle("User Post");
+        post1.setBody("This is my User blog post");
+        post1.setDate(new Date());
+
+        onePost.add(post1);
+
+        return onePost;
     }
 }
