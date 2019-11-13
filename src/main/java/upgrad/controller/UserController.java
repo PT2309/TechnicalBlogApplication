@@ -10,6 +10,7 @@ import upgrad.model.User;
 import upgrad.service.PostService;
 import upgrad.service.UserService;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 @Controller
@@ -46,15 +47,15 @@ public class UserController {
         return "users/login";
     }
 
-//    @RequestMapping("users/logout")
-//    public String logout(Model model){
-//
-//        ArrayList<Post> posts = postService.getAllPosts();
-//
-//        model.addAttribute("posts", posts);
-//
-//        return "index";
-//    }
+    @RequestMapping("users/logout")
+    public String logout(Model model) throws SQLException, ClassNotFoundException {
+
+        ArrayList<Post> posts = postService.getAllPosts();
+
+        model.addAttribute("posts", posts);
+
+        return "index";
+    }
 
 
 

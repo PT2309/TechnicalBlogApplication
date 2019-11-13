@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import upgrad.model.Post;
 import upgrad.service.PostService;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 @Controller
@@ -17,7 +18,7 @@ public class PostController {
     PostService postService;
 
     @RequestMapping("posts")
-    public String getPost(Model model){
+    public String getPost(Model model) throws SQLException, ClassNotFoundException {
 
         ArrayList<Post> post = postService.getOnePost();
 

@@ -1,0 +1,17 @@
+<persistence>
+
+   <persistent-unit name="techblog">
+       <provider>org.hibernate.jpa.HibernatePersistenceProvider </provider>
+
+       <properties>
+           <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
+           <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/technicalblogapplication" />
+           <property name="javax.persistence.jdbc.user" value="postgresql" />
+           <property name="javax.persistence.jdbc.password" value="postgresql@123" />
+
+           <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL82Dialect" />
+       </properties>
+
+   </persistent-unit>
+
+</persistence>
