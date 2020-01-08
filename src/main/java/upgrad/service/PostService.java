@@ -31,21 +31,12 @@ public class PostService {
 
     public List<Post> getAllPosts() throws ClassNotFoundException, SQLException {
 
-//        ArrayList<Post> posts = new ArrayList<>(); // Empty collection of Post data.
-
         return repository.getAllPosts();
     }
 
     public ArrayList<Post> getOnePost() throws ClassNotFoundException, SQLException {
 
         ArrayList<Post> onePost = new ArrayList<>(); // Empty collection of Post data.
-
-//        Post post1 = new Post();
-//        post1.setTitle("User Post");
-//        post1.setBody("This is my User blog post");
-//        post1.setDate(new Date());
-//
-//        onePost.add(post1);
 
         Class.forName("org.postgresql.Driver");
 
@@ -68,7 +59,9 @@ public class PostService {
         return onePost;
     }
 
-    public void createPost(Post post){
-
+    public void createPost(Post newPost){
+        newPost.setDate(new Date());
+        repository.createPost(newPost);
+        System.out.println(newPost);
     }
 }

@@ -10,6 +10,7 @@ import upgrad.service.PostService;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class PostController {
@@ -20,7 +21,7 @@ public class PostController {
     @RequestMapping("posts")
     public String getPost(Model model) throws SQLException, ClassNotFoundException {
 
-        ArrayList<Post> post = postService.getOnePost();
+        List<Post> post = postService.getAllPosts();
 
         model.addAttribute("posts", post);
 
