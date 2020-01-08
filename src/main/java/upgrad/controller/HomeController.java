@@ -9,18 +9,23 @@ import upgrad.service.PostService;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 
 @Controller
-public class HomepageController {
+public class HomeController {
 
     @Autowired
     private PostService postService;
 
+    public HomeController(){
+        System.out.println("Inside Home Controller");
+    }
+
     @RequestMapping("/")
     public String getAllPosts(Model model) throws SQLException, ClassNotFoundException {
 
-        ArrayList<Post> posts = postService.getAllPosts();
+        List<Post> posts = postService.getAllPosts();
 
         model.addAttribute("posts", posts);
 

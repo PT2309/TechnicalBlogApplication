@@ -1,11 +1,18 @@
 package upgrad.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import upgrad.model.Post;
 import org.springframework.stereotype.Service;
+import upgrad.repository.PostRepository;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceUnit;
+import javax.persistence.TypedQuery;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 
 // Service Class which is a component in our Spring Application
@@ -15,42 +22,18 @@ import java.util.Date;
 @Service
 public class PostService {
 
-    public ArrayList<Post> getAllPosts() throws ClassNotFoundException, SQLException {
+    @Autowired
+    private PostRepository repository;
 
-        ArrayList<Post> posts = new ArrayList<>(); // Empty collection of Post data.
+    public PostService(){
+        System.out.println("Inside Post Service");
+    }
 
-//        Post post1 = new Post();
-//        post1.setTitle("My First Blog");
-//        post1.setBody("I want a great Spring Boot Application");
-//        post1.setDate(new Date());
-//
-//        Post post2 = new Post();
-//        post2.setTitle("My Second Blog");
-//        post2.setBody("I want a great Spring Boot Application");
-//        post2.setDate(new Date());
-//
-//        posts.add(post1);
-//        posts.add(post2);
+    public List<Post> getAllPosts() throws ClassNotFoundException, SQLException {
 
-        Class.forName("org.postgresql.Driver");
+//        ArrayList<Post> posts = new ArrayList<>(); // Empty collection of Post data.
 
-        Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/technicalblogapplication", "postgres", "postgres@123");
-
-        Statement statement = connection.createStatement();
-
-        ResultSet rs = statement.executeQuery("select * from posts");
-
-        while(rs.next()){
-            Post post = new Post();
-            post.setTitle(rs.getString("title"));
-            post.setBody(rs.getString("body"));
-
-            posts.add(post);
-        }
-
-        connection.close();
-
-        return posts;
+        return repository.getAllPosts();
     }
 
     public ArrayList<Post> getOnePost() throws ClassNotFoundException, SQLException {

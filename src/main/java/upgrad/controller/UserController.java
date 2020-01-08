@@ -12,6 +12,7 @@ import upgrad.service.UserService;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class UserController {
@@ -50,7 +51,7 @@ public class UserController {
     @RequestMapping("users/logout")
     public String logout(Model model) throws SQLException, ClassNotFoundException {
 
-        ArrayList<Post> posts = postService.getAllPosts();
+        List<Post> posts = postService.getAllPosts();
 
         model.addAttribute("posts", posts);
 
