@@ -64,4 +64,20 @@ public class PostService {
         repository.createPost(newPost);
         System.out.println(newPost);
     }
+
+    public Post getPost(Integer postId){
+
+        return repository.getPost(postId);
+    }
+
+    public void updatedPost(Post updatedPost){
+
+        updatedPost.setDate(new Date());
+        repository.updatedPost(updatedPost);
+    }
+
+    public void deletePost(Integer postId){
+
+        repository.deletePost(postId);
+    }
 }
