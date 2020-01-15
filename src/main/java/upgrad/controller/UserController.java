@@ -7,9 +7,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import upgrad.model.Post;
 import upgrad.model.User;
+import upgrad.model.UserProfile;
 import upgrad.service.PostService;
 import upgrad.service.UserService;
 
+import javax.servlet.http.HttpSession;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,8 +32,10 @@ public class UserController {
     }
 
     @RequestMapping(value = "users/login", method= RequestMethod.POST)
-    public String loginUser(User user){
-        if(userService.validUser(user)) {
+    public String loginUser(User user, HttpSession session){
+        User existingUser = userService.validUser(user);
+        if( existingUser != null) {
+            session.setAttribute("loggeduser", existingUser);
             return "redirect:/posts";
         } else {
             return "users/login";
@@ -39,17 +43,26 @@ public class UserController {
     }
 
     @RequestMapping("users/registration")
-    public String register(){
+    public String registration(Model model){
+        User user = new User();
+        UserProfile profile = new UserProfile();
+        user.setProfile(profile);
+
+        model.addAttribute("User", user);
+
         return "users/registration";
     }
 
     @RequestMapping(value="users/registration", method = RequestMethod.POST)
-    public String signUp(){
+    public String register(User user){
+        userService.registerUser(user);
+
         return "users/login";
     }
 
-    @RequestMapping("users/logout")
-    public String logout(Model model) throws SQLException, ClassNotFoundException {
+    @RequestMapping(value="users/logout", method = RequestMethod.POST)
+    public String logout(Model model, HttpSession session) throws SQLException, ClassNotFoundException {
+        session.invalidate();
 
         List<Post> posts = postService.getAllPosts();
 
